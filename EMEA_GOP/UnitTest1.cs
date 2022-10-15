@@ -5,6 +5,7 @@ namespace EMEA_GOP
         [SetUp]
         public void Setup()
         {
+            Console.WriteLine("This is chandra");
         }
 
         [Test]
