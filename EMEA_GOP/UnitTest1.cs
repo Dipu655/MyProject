@@ -7,10 +7,11 @@ namespace EMEA_GOP
         {
             Console.WriteLine("This is chandra");
         }
-
+ 
         [Test]
         public void Test1()
         {
+            Console.WriteLine("Hi");
             Assert.Pass();
         }
     }
