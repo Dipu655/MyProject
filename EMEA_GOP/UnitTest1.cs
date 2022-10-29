@@ -1,42 +1,64 @@
+using EMEA_GOP.Utility;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+
 namespace EMEA_GOP
 {
+
     public class Tests
     {
+        IWebDriver driver;
         [SetUp]
         public void Setup()
         {
-            Console.WriteLine("This is chandra");
+
+            driver = new ChromeDriver("C:\\Users\\chand\\source\\repos\\EMEA_GOP\\EMEA_GOP\\Driver\\");
+            driver.Manage().Window.Maximize();
         }
  
         [Test]
-        public void Test1()
+        public void VerifySubmitbuttamAsExpected()
         {
-            Console.WriteLine("Hi");
-            Assert.Pass();
+            driver.Navigate().GoToUrl("https://demoqa.com/elements");
+            IWebElement textbox = driver.FindElement(By.XPath("//*[@id=\"item-0\"]/span"));
+            textbox.Click();
+            IWebElement txtFullname = driver.FindElement(By.Id("userName"));
+            txtFullname.SendKeys("Chandrakanta");
+            IWebElement txtEmail = driver.FindElement(By.Id("userEmail"));
+            txtEmail.SendKeys("chanddra.k.khuntia@gmail.com");
+            IWebElement txtCurrentAdress = driver.FindElement(By.Id("currentAddress"));
+            txtCurrentAdress.SendKeys("Banglore");
+            IWebElement txtPermeantadress = driver.FindElement(By.Id("permanentAddress"));
+            txtPermeantadress.SendKeys("Odisha");
+            IWebElement btnSubmit = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[5]/div/button"));
+            btnSubmit.Click();
+        }
+        [Test]
+        public void ValidateTextbox()
+        {
+            Utiliyes utiliyes = new Utiliyes();
+            driver.Navigate().GoToUrl("https://demoqa.com/elements");
+            IWebElement textbox = driver.FindElement(By.XPath("//*[@id=\"item-0\"]/span"));
+            textbox.Click();
+            IWebElement txtFullname = driver.FindElement(By.Id("userName"));
+            txtFullname.SendKeys(utiliyes.RandomString(20));
+            IWebElement txtEmail = driver.FindElement(By.Id("userEmail"));
+            txtEmail.SendKeys("chanddra.k.khuntia@gmail.com");
+            IWebElement txtCurrentAdress = driver.FindElement(By.Id("currentAddress"));
+            txtCurrentAdress.SendKeys("Banglore");
+            IWebElement txtPermeantadress = driver.FindElement(By.Id("permanentAddress"));
+            txtPermeantadress.SendKeys(utiliyes.RandomString(200));
+            //IWebElement btnSubmit = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[5]/div/button"));
+            //btnSubmit.Click();
         }
 
-        [Test]
-        public void Cal()
+        [TearDown]
+        public void closeBrowser()
         {
-            //Arrange
-            //I am on google page
-            Console.WriteLine("Enter a number");
-
-
-
-
-            //I have enter x in search text box
-
-            //I click Search Button
-
-
-            //Act
-
-
-            //Assert
-
-
-
+            //driver.Close();
         }
     }
+
+
+
 }
