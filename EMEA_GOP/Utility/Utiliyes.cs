@@ -19,8 +19,15 @@ namespace EMEA_GOP.Utility
                     builder.Append(ch);
                 }
 
-                return builder.ToString();
+                 return builder.ToString();
             }
-        
+        private readonly Random _random = new Random();
+        public int RandomNumber(int min, int max)
+        {
+            return _random.Next(min, max);
+        }
+
+
+
     }
 }
